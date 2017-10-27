@@ -6,8 +6,6 @@ import java.lang.StringBuilder;
  * @author Pauline Walsh
  * @version 1.0 2017.10.27
  */
-
-
 public class LinkedList<T> {
 
 	private Node<T> head;
@@ -76,6 +74,21 @@ public class LinkedList<T> {
 		return false;
 	}
 
+	/** Get data from node at index.
+	 *  @param 		index of node to retrieve data from.
+	 *  @return		data from node at index, or null if index is invalid.
+	 */ 
+	public T get(int index) {
+		if (index >= length || index < 0) {
+			return null;
+		}
+		Node<T> current = head;
+		for (int i = 1; i <= index; i++) {
+			current = current.next;
+		}
+		return current.data;
+	}
+
 	/** Get a string containing the data from every node in the list.
 	 *  @return 		String representation of list.
 	 */
@@ -122,6 +135,8 @@ public class LinkedList<T> {
 		System.out.println(list.toString());
 		System.out.println("List contains a: " + list.contains('a'));
 		System.out.println("List contains b: " + list.contains(42));
+		int last = list.length-1;
+		System.out.println("Node at index " + last + " data: " + list.get(last));
 	}
 
 }
