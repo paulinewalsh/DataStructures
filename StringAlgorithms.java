@@ -9,14 +9,15 @@ public class StringAlgorithms {
 
 		for (int i = 0; i < s.length(); i++) {
 			String c = Character.toString(s.charAt(i));
-			if (chars.contains(c)) {
-				return true;
+			if (chars.containsKey(c)) {
+				return false;
+
 			}
 			else {
 				chars.put(c, 1);
 			}
 		}
-		return false;
+		return true;
 
 	}
 
