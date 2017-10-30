@@ -124,6 +124,18 @@ public class BinarySearchTree<T extends Comparable<? super T>> {
 		return previous;
 	}
 
+	public void traverseInOrder() {
+		traverseInOrder(top);
+	}
+
+	private void traverseInOrder(Node<T> current) {
+		if (current != null) {
+			traverseInOrder(current.left);
+			System.out.println("Visited node with value " + current.data);
+			traverseInOrder(current.right);
+		}
+	}
+
 
 
 
@@ -150,6 +162,7 @@ public class BinarySearchTree<T extends Comparable<? super T>> {
 			tree.insert(nums[i]);
 		}
 		tree.delete(70);
+		tree.traverseInOrder();
 	}
 
 }
