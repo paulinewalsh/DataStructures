@@ -1,14 +1,19 @@
-import java.util.Hashtable;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.Arrays;
 
+
+/* These problems are all taken from Cracking the Coding Interview, 5th Ed */
 public class StringAlgorithms {
 
-	// Complexity:  O(n) where n is string length
+	/* Given a string, check to see if all of the characters are unique. 
+	   Time Complexity:  O(n) where n is string length.
+	   */
 	public static boolean allUnique(String s) {
-		Hashtable<String, Integer> chars = new Hashtable<String, Integer>();
+		HashMap<Character, Integer> chars = new HashMap<Character, Integer>();
 
 		for (int i = 0; i < s.length(); i++) {
-			String c = Character.toString(s.charAt(i));
+			char c = s.charAt(i);
 			if (chars.containsKey(c)) {
 				return false;
 
@@ -22,8 +27,11 @@ public class StringAlgorithms {
 	}
 
 
-	// Complexity:  O(n log n) where n is string length
+	/* Given two strings, check to see if one is a permutation of another.
+	   Complexity:  O(n log n) where n is string length. 
+	   */
 	public static boolean isPermutation(String s1, String s2) {
+		// First check for the simple case -- if the lengths are different, return false.
 		if (s1.length() != s2.length()) {
 			return false;
 		}
@@ -41,8 +49,43 @@ public class StringAlgorithms {
 		return true;
 	}
 
+	/*  Given a string, check to see if the characters can be used (in any order) to form a palindrome.
+	   	Count the occurrences of each character. At most, a palindrome can only have 1 letter with an
+	   	odd number of occurrences.
+	   	Time Complexity: O(N)
+		*/
+	public static boolean isPalindrome(String s1) {
+		HashMap<Character, Integer> table = new HashMap<>();
+		s1 = s1.toLowerCase();  // O(n) 
+
+		for (int i = 0; i < s1.length(); i++) {  // O(n)
+			char c = s1.charAt(i);
+			// Ignore spaces. 
+			if (c == ' ') continue;
+			Integer value = table.get(c); //O(1)
+			if (value != null) {  
+				table.put(c, value +1); //O(1)
+			}
+			else {
+				table.put(c, 1);  //O(1)
+			}
+
+		}
+		int oddCount = 0;
+		Collection<Integer> values = table.values();  //O(n)
+		for (int val:values) {  //O(n)
+			if (val % 2 == 1) {
+				oddCount++;
+			}
+			if (oddCount > 1) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 
+	/* Run methods on some test cases. Run with java -ea StringAlgorithms to check assertions. */
 	public static void main(String[] args) {
 		String s = "abcdefg";
 		boolean unique = allUnique(s);
@@ -61,6 +104,15 @@ public class StringAlgorithms {
 		s2 = "hijklmno";
 		perm = isPermutation(s1, s2);
 		assert !perm;
+
+
+		s = "taco cat";
+		boolean pal = isPalindrome(s);
+		assert pal;
+
+		s = "loopy";
+		pal = isPalindrome(s);
+		assert !pal;
 	}
 
 
