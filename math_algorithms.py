@@ -27,15 +27,16 @@ def find_pythagorean_triple(x):
 	c = triplet[2]
 
 	valid = (a**2 + b**2 == c**2)
+	total = sum(triplet)
 
-	if valid:
+	if valid and total == x:
 		return triplet
 	return None
 	
 
 
 def main():
-	x = 1000
+	x = 100
 	triplet = find_pythagorean_triple(x)
 	if triplet:
 		print("The pythagorean triple where a + b + c = " + str(x) + " is " + str(triplet))
