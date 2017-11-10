@@ -35,10 +35,12 @@ def find_pythagorean_triple(x):
 
 
 def main():
-
-	triplet = find_pythagorean_triple(1000)
+	x = 1000
+	triplet = find_pythagorean_triple(x)
 	if triplet:
-		print("The pythagorean triple where a + b + c = 1000 is " + str(triplet))
+		print("The pythagorean triple where a + b + c = " + str(x) + " is " + str(triplet))
+	else:
+		print("No valid triplet which sums to " + str(x))
 
 	
 
