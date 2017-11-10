@@ -10,17 +10,17 @@ def euclid(m, n):
 
 def find_pythagorean_triple(x):
 	n = 1
-	m = 2
 
-	while m < x:
-		while n < x:
+	while n < x:
+		m = n + 1
+		while m < x:
 			triplet = euclid(m, n)
 			if sum(triplet) == x:
 				break
-			n +=1
+			m +=1
 		if sum(triplet) == x:
 			break
-		m += 1
+		n += 1
 
 	a = triplet[0]
 	b = triplet[1]
