@@ -36,7 +36,7 @@ def find_pythagorean_triple(x):
 
 
 def main():
-	x = 100
+	x = 1000
 	triplet = find_pythagorean_triple(x)
 	if triplet:
 		print("The pythagorean triple where a + b + c = " + str(x) + " is " + str(triplet))
