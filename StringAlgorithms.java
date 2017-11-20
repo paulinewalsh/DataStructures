@@ -8,6 +8,7 @@ public class StringAlgorithms {
 
 	/* Given a string, check to see if all of the characters are unique. 
 	   Time Complexity:  O(n) where n is string length.
+	   Space Complexity: O(n) 
 	   */
 	public static boolean allUnique(String s) {
 		HashMap<Character, Integer> chars = new HashMap<Character, Integer>();
@@ -25,7 +26,6 @@ public class StringAlgorithms {
 		return true;
 
 	}
-
 
 	/* Given two strings, check to see if one is a permutation of another.
 	   Complexity:  O(n log n) where n is string length. 
@@ -55,24 +55,35 @@ public class StringAlgorithms {
 	   	Time Complexity: O(N)
 		*/
 	public static boolean isPalindrome(String s1) {
-		HashMap<Character, Integer> table = new HashMap<>();
+		
 		s1 = s1.toLowerCase();  // O(n) 
+		HashMap<Character, Integer> map = mapString(s1);
+		return hasMultipleOddCounts(map);
+		
+		
+	}
 
-		for (int i = 0; i < s1.length(); i++) {  // O(n)
-			char c = s1.charAt(i);
+	public static HashMap<Character,Integer> mapString(String s) {
+		HashMap<Character, Integer> map = new HashMap<>();
+		for (int i = 0; i < s.length(); i++) {  // O(n)
+			char c = s.charAt(i);
 			// Ignore spaces. 
 			if (c == ' ') continue;
-			Integer value = table.get(c); //O(1)
+			Integer value = map.get(c); //O(1)
 			if (value != null) {  
-				table.put(c, value +1); //O(1)
+				map.put(c, value + 1); //O(1)
 			}
 			else {
-				table.put(c, 1);  //O(1)
+				map.put(c, 1);  //O(1)
 			}
 
 		}
+		return map;
+	}
+
+	public static boolean hasMultipleOddCounts(HashMap<Character, Integer> map) {
 		int oddCount = 0;
-		Collection<Integer> values = table.values();  //O(n)
+		Collection<Integer> values = map.values();  //O(n)
 		for (int val:values) {  //O(n)
 			if (val % 2 == 1) {
 				oddCount++;
@@ -82,6 +93,7 @@ public class StringAlgorithms {
 			}
 		}
 		return true;
+
 	}
 
 
