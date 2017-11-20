@@ -1,4 +1,4 @@
-/** Private inner Node class for holding data and reference to next node.*/
+/** Node class for holding data and reference to next node.*/
 public class Node<T extends Comparable> {
 
     protected T data;
